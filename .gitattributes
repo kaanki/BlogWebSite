@@ -1,3 +1,6 @@
-# Auto detect text files and perform LF normalization
-* text=C#
+ text=C#
+<<<<<<< HEAD
 *.rb linguist-language=C#
+=======
+*.rb linguist-language=C#
+>>>>>>> 194632d3876d71207bc6fb59704562c4592d666e
