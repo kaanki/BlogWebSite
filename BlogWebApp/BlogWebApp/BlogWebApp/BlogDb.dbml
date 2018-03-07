@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BlogDb" Class="BlogDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.;Initial Catalog=BlogDb;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BlogDbConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.kategoriler" Member="kategorilers">
+    <Type Name="kategoriler">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="kategoriAdi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="urlsefKatAdi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="kategoriler_makaleler" Member="makalelers" ThisKey="ID" OtherKey="kategoriID" Type="makaleler" />
+    </Type>
+  </Table>
+  <Table Name="dbo.yoneticiler" Member="yoneticilers">
+    <Type Name="yoneticiler">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="kullaniciAdi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Sifre" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="adi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="soyadi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="yoneticiler_makaleler" Member="makalelers" ThisKey="ID" OtherKey="yazarID" Type="makaleler" />
+    </Type>
+  </Table>
+  <Table Name="dbo.makaleler" Member="makalelers">
+    <Type Name="makaleler">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="makaleAdi" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="makaleKisaAciklama" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="makaleDescription" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="makaleKeyword" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="makaleTitle" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="yazarID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="kategoriID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="makale" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="resim" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="kategoriler_makaleler" Member="kategoriler" ThisKey="kategoriID" OtherKey="ID" Type="kategoriler" IsForeignKey="true" />
+      <Association Name="yoneticiler_makaleler" Member="yoneticiler" ThisKey="yazarID" OtherKey="ID" Type="yoneticiler" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.yorumlar" Member="yorumlars">
+    <Type Name="yorumlar">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="makaleID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isim" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="mesaj" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="onay" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
